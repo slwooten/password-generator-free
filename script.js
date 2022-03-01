@@ -19,16 +19,28 @@ function generatePassword() {
   // Prompts for specific amount of characters and character type //
   if (!count || count < 8 || count > 128) {
     alert('Please choose between 8 and 128 characters.');
+    return 'Please type a number between 8 and 128'
+  } else {
+    if (confirm('Would you like to include lowercase letters?')) {
+      all += lowercase;
+    }
+    if (confirm('Would you like to include uppercase letters?')) {
+      all += uppercase;
+    }
+    if (confirm('Would you like to include numbers?')) {
+      all += numeric;
+    }
+    if (confirm('Would you like to include special characters?')) {
+      all += special;
+    }
   }
   
   var genPassword = "";
   for (var i = 0; i < count; i++) {
-    var random = Math.floor(Math.random() * lowercase.length);
-    genPassword += lowercase[random];
+    var random = Math.floor(Math.random() * all.length);
+    genPassword += all[Math.floor(Math.random() * all.length)];
   }
-
-  console.log(genPassword);
-
+  // Generates the password
   return genPassword;
 }
 
